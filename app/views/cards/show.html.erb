@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @card.name %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @card.kind_id %>
+</p>
+
+<p>
+  <strong>Civilization:</strong>
+  <%= @card.civilization_id %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @card.cost %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @card.race_id %>
+</p>
+
+<p>
+  <strong>Power:</strong>
+  <%= @card.power_id %>
+</p>
+
+<p>
+  <strong>Rarity:</strong>
+  <%= @card.rarity_id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @card.url %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

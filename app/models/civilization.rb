@@ -1,0 +1,2 @@
+class Civilization < ApplicationRecord
+end
