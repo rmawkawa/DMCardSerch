@@ -6,7 +6,11 @@ class CardsController < ApplicationController
   def index
     @cards = Card.all
     @cards.each do |card|
-      p card.kind_id
+      # p card.name
+      # p card.kind.name
+      # p card.civilization.name
+      # p card.power.value
+      # p card.race
     end
   end
 

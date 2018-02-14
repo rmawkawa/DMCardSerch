@@ -24,10 +24,18 @@
         <td><%= card.kind.name %></td>
         <td><%= card.civilization.name %></td>
         <td><%= card.cost %></td>
-        <td><%= card.race.name %></td>
-        <td><%= card.power.value %></td>
+        <% if card.race.present? %>
+          <td><%= card.race.name %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <% if card.power.present? %>
+          <td><%= card.power.value %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= card.rarity.name %></td>
-        <td><%= card.url %></td>
+        <td><%= link_to "Wiki", card.url %></td>
         <td><%= link_to 'Show', card %></td>
         <td><%= link_to 'Edit', edit_card_path(card) %></td>
         <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
