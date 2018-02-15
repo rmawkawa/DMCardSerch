@@ -1,43 +1,36 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Card -%>
+<div class="page-header">
+  <h1><%= @card.name %></h1>
+</div>
 
-<p>
-  <strong>名前:</strong>
-  <%= @card.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong>種類:</strong></dt>
+  <dd><%= @card.kind.name %></dd>
+  <dt><strong>文明:</strong></dt>
+  <dd><%= @card.civilization.name %></dd>
+  <dt><strong>コスト:</strong></dt>
+  <dd><%= @card.cost %></dd>
+  <% if @card.race.present? %>
+    <dt><strong>種族:</strong></dt>
+    <dd><%= @card.race.name %></dd>
+  <% end %>
+  <% if @card.power.present? %>
+    <dt><strong>パワー:</strong></dt>
+    <dd><%= @card.power.value %></dd>
+  <% end %>
+  <dt><strong>レアリティ:</strong></dt>
+  <dd><%= @card.rarity.name %></dd>
+  <dt><strong>Wiki:</strong></dt>
+  <dd><%= link_to @card.url, @card.url %></dd>
+</dl>
 
-<p>
-  <strong>種類:</strong>
-  <%= @card.kind.name %>
-</p>
 
-<p>
-  <strong>文明:</strong>
-  <%= @card.civilization.name %>
-</p>
-
-<p>
-  <strong>コスト:</strong>
-  <%= @card.cost %>
-</p>
-
-<p>
-  <strong>種族:</strong>
-  <%= @card.race.name %>
-</p>
-
-<p>
-  <strong>パワー:</strong>
-  <%= @card.power.value %>
-</p>
-
-<p>
-  <strong>レアリティ:</strong>
-  <%= @card.rarity.name %>
-</p>
-
-<p>
-  <strong>Wiki:</strong>
-  <%= link_to @card.url, @card.url %>
-</p>
-
-<%= link_to 'Back', cards_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              cards_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_card_path(@card), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              card_path(@card),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

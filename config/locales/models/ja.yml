@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    models:
+      card: カード
+      kind: 種類
+    attributes:

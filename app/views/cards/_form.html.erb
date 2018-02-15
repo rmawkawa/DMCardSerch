@@ -1,57 +1,83 @@
-<%= form_for(card) do |f| %>
-  <% if card.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+<%= form_for @card, :html => { :class => "form-horizontal card" } do |f| %>
 
-      <ul>
-      <% card.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @card.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @card.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :kind_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :kind_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:kind_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :civilization_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :civilization_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:civilization_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cost, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :cost, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:cost) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :race_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :race_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:race_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :power_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :power_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:power_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rarity_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :rarity_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:rarity_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :url, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :url, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:url) %>
   </div>
 
-  <div class="field">
-    <%= f.label :kind_id %>
-    <%= f.number_field :kind_id %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                cards_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :civilization_id %>
-    <%= f.number_field :civilization_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
-  </div>
-
-  <div class="field">
-    <%= f.label :race_id %>
-    <%= f.number_field :race_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :power_id %>
-    <%= f.number_field :power_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :rarity_id %>
-    <%= f.number_field :rarity_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :url %>
-    <%= f.text_area :url %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

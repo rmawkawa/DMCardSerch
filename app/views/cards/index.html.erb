@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Card -%>
+<div class="page-header">
+  <h1>DMカード検索</h1>
+</div>
 
-<h1>DMカード検索</h1>
 
 <%= search_form_for @q do |f| %>
 
@@ -11,12 +13,14 @@
 
   <%# 種類部分一致検索 %>
   <%= f.label :kind_name_cont, "種類" %>
-  <%= f.search_field :kind_name_cont %>
+
+  <%= f.collection_select :kind_name_cont, Kind.all, :name, :name, include_blank: true %>
   <br />
   
   <%# 文明部分一致検索 %>
   <%= f.label :civilization_name_cont, "文明" %>
-  <%= f.search_field :civilization_name_cont %>
+  <%= f.collection_select :civilization_name_cont, Civilization.all, :name, :name, include_blank: true %>
+
   <br />
 
   <%# コスト下限 %>
@@ -31,7 +35,8 @@
   
   <%# 種族部分一致検索 %>
   <%= f.label :race_name_cont, "種族" %>
-  <%= f.search_field :race_name_cont %>
+  <%= f.collection_select :race_name_cont, Race.all, :name, :name, include_blank: true %>
+
   <br />
   
     <%# パワー下限 %>
@@ -45,8 +50,9 @@
   <br />
   
   <%# レアリティ部分一致検索 %>
-  <%= f.label :rarity_name_cont, "文明" %>
-  <%= f.search_field :rarity_name_cont %>
+  <%= f.label :rarity_name_cont, "レアリティ" %>
+  <%= f.collection_select :rarity_name_cont, Rarity.all, :name, :name, include_blank: true %>
+
   <br />
 
 
@@ -56,8 +62,7 @@
 
 
 <hr />
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= sort_link(@q, :name, "名前") %></th>
@@ -68,11 +73,10 @@
       <th><%= sort_link(@q, :power_value, "パワー") %></th>
       <th><%= sort_link(@q, :rarity_name, "レアリティ") %></th>
       <th>Url</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
+    
     <% @cards.each do |card| %>
       <tr>
         <td><%= link_to card.name, card %></td>
@@ -93,7 +97,6 @@
         <td><%= link_to "Wiki", card.url %></td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
-
-<br>
