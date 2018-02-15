@@ -1,44 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>名前:</strong>
   <%= @card.name %>
 </p>
 
 <p>
-  <strong>Kind:</strong>
-  <%= @card.kind_id %>
+  <strong>種類:</strong>
+  <%= @card.kind.name %>
 </p>
 
 <p>
-  <strong>Civilization:</strong>
-  <%= @card.civilization_id %>
+  <strong>文明:</strong>
+  <%= @card.civilization.name %>
 </p>
 
 <p>
-  <strong>Cost:</strong>
+  <strong>コスト:</strong>
   <%= @card.cost %>
 </p>
 
 <p>
-  <strong>Race:</strong>
-  <%= @card.race_id %>
+  <strong>種族:</strong>
+  <%= @card.race.name %>
 </p>
 
 <p>
-  <strong>Power:</strong>
-  <%= @card.power_id %>
+  <strong>パワー:</strong>
+  <%= @card.power.value %>
 </p>
 
 <p>
-  <strong>Rarity:</strong>
-  <%= @card.rarity_id %>
+  <strong>レアリティ:</strong>
+  <%= @card.rarity.name %>
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @card.url %>
+  <strong>Wiki:</strong>
+  <%= link_to @card.url, @card.url %>
 </p>
 
-<%= link_to 'Edit', edit_card_path(@card) %> |
 <%= link_to 'Back', cards_path %>
