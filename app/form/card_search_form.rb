@@ -1,4 +1,4 @@
-class CardSearchForm
-  include ActiveModel::Model
+# class CardSearchForm
+#   include ActiveModel::Model
   
-  attr_accessor 
+#   attr_accessor 
