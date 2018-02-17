@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20180120181023) do
   create_table "cards", force: :cascade do |t|
     t.string   "name"
     t.integer  "kind_id"
-    t.integer  "civilization_id"
+    t.integer  "civilization_id", null: true, default: nil
     t.integer  "cost"
-    t.integer  "race_id"
-    t.integer  "power_id"
+    t.integer  "race_id", null: true, default: nil
+    t.integer  "power_id", null: true, default: nil
     t.integer  "rarity_id"
     t.text     "url"
     t.datetime "created_at",      null: false
