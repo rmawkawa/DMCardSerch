@@ -4,10 +4,19 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
-    @cards.each do |card|
-      p card.kind_id
-    end
+    # @cards = Card.all
+    # @cards.each do |card|
+    #   # p card.name
+    #   # p card.kind.name
+    #   # p card.civilization.name
+    #   # p card.power.value
+    #   # p card.race
+    # end
+    
+    # ransack
+    @q = Card.search(params[:q])
+    @cards = @q.result(distinct: true)
+    
   end
 
   # GET /cards/1

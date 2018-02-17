@@ -1,0 +1,39 @@
+<% if @cards.present? %>
+
+
+  
+  <table>
+    <thead>
+      <tr>
+        <th>カード名</th>
+        <th>種類</th>
+        <th>文明</th>
+        <th>コスト</th>
+        <th>種族</th>
+        <th>パワー</th>
+        <th>レアリティ</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= card.name %></td>
+          <td><%= card.kind.name %></td>
+          <td><%= card.civilization.name %></td>
+          <td><%= card.cost %></td>
+          <td><%= card.race.name %></td>
+          <td><%= card.power.value %></td>
+          <td><%= card.rarity.name %></td>
+          <td><%= link_to "WIKI", "card.url" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+
+  <h3>カードはありません</h3>
+  
+<% end %>

@@ -1,0 +1,16 @@
+<div class='content'>
+  
+  <h1>DMカード検索</h1>
+  <div id="search-box">
+    <%= form_tag('/', method: get) do %>
+      <%= text_field_tag :card, "", id: "card_search", name: "name", style: "width: 200px;" %>
+      <button title="検索" type="submit">検索</button>
+    <% end %>
+  </div>
+  
+  <h2>検索結果</h2>
+  <div id='card_list'>
+    <!--<%= render partial: 'card_list' %>-->
+  </div>
+  
+</div>

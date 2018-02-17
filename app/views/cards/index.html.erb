@@ -1,41 +1,102 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Card -%>
+<div class="page-header">
+  <h1>DMカード検索</h1>
+</div>
 
-<h1>Cards</h1>
 
-<table>
+<%= search_form_for @q do |f| %>
+
+  <%# start カード名or検索 %>
+  <%= f.label :name_cont_any, "カード名" %>
+  <%= f.search_field :name_cont_any %>
+  <br />
+
+  <%# 種類部分一致検索 %>
+  <%= f.label :kind_name_cont, "種類" %>
+
+  <%= f.collection_select :kind_name_cont, Kind.all, :name, :name, include_blank: true %>
+  <br />
+  
+  <%# 文明部分一致検索 %>
+  <%= f.label :civilization_name_cont, "文明" %>
+  <%= f.collection_select :civilization_name_cont, Civilization.all, :name, :name, include_blank: true %>
+
+  <br />
+
+  <%# コスト下限 %>
+  <%= f.label :cost_gt, "コスト(以上)" %>
+  <%= f.search_field :cost_gt %>
+  <br />
+  
+  <%# コスト上限 %>
+  <%= f.label :cost_lt, "コスト(以下)" %>
+  <%= f.search_field :cost_lt %>
+  <br />
+  
+  <%# 種族部分一致検索 %>
+  <%= f.label :race_name_cont, "種族" %>
+  <%= f.collection_select :race_name_cont, Race.all, :name, :name, include_blank: true %>
+
+  <br />
+  
+    <%# パワー下限 %>
+  <%= f.label :power_value_gt, "パワー(以上)" %>
+  <%= f.search_field :power_value_gt %>
+  <br />
+  
+  <%# パワー上限 %>
+  <%= f.label :power_value_lt, "パワー(以下)" %>
+  <%= f.search_field :power_value_lt %>
+  <br />
+  
+  <%# レアリティ部分一致検索 %>
+  <%= f.label :rarity_name_cont, "レアリティ" %>
+  <%= f.collection_select :rarity_name_cont, Rarity.all, :name, :name, include_blank: true %>
+
+  <br />
+
+
+  <%# 検索ボタン %>
+  <%= f.submit %>
+<% end %>
+
+
+<hr />
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Kind</th>
-      <th>Civilization</th>
-      <th>Cost</th>
-      <th>Race</th>
-      <th>Power</th>
-      <th>Rarity</th>
+      <th><%= sort_link(@q, :name, "名前") %></th>
+      <th><%= sort_link(@q, :kind_name, "種類") %></th>
+      <th><%= sort_link(@q, :civilization_name, "文明") %></th>
+      <th><%= sort_link(@q, :cost, "コスト") %></th>
+      <th><%= sort_link(@q, :race_name, "種族") %></th>
+      <th><%= sort_link(@q, :power_value, "パワー") %></th>
+      <th><%= sort_link(@q, :rarity_name, "レアリティ") %></th>
       <th>Url</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
+    
     <% @cards.each do |card| %>
       <tr>
-        <td><%= card.name %></td>
+        <td><%= link_to card.name, card %></td>
         <td><%= card.kind.name %></td>
         <td><%= card.civilization.name %></td>
         <td><%= card.cost %></td>
-        <td><%= card.race.name %></td>
-        <td><%= card.power.value %></td>
+        <% if card.race.present? %>
+          <td><%= card.race.name %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <% if card.power.present? %>
+          <td><%= card.power.value %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= card.rarity.name %></td>
-        <td><%= card.url %></td>
-        <td><%= link_to 'Show', card %></td>
-        <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Wiki", card.url %></td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Card', new_card_path %>
